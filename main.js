@@ -2,18 +2,7 @@
 
 const allMatchEl = document.getElementById('all-matches')
 const resultEl = document.getElementById('result')
-
-
-
-// const incrementEl = document.getElementById("increment")
-// const decrementEl = document.getElementById("decrement")
-
-
-
-const addMatchEl = document.getElementsByClassName('lws-addMatch')
 const singleResultEl = document.getElementsByClassName('lws-singleResult')[0]
-
-
 
 
 // Initial State 
@@ -37,11 +26,6 @@ function matchReducer(state = initialState, action) {
             ...state,
             value: state.value - action.payload,
         }
-    } else if (action.type === "addMatch") {
-        return {
-            ...state,
-            counter: state.counter + 1,
-        }
     } else {
         return state;
     }
@@ -53,7 +37,6 @@ const store = Redux.createStore(matchReducer);
 
 const render = () => {
     const state = store.getState();
-    console.log(state)
     if (state.value < 0) {
         state.value = 0
         singleResultEl.innerText = 0
@@ -102,54 +85,46 @@ function remove(ele) {
 }
 
 
+// const matchDom = () => {
 
-const matchDom = () => {
+//     const state = store.getState();
 
-    const state = store.getState();
-    console.log('first', state.counter)
+//     allMatchEl.innerHTML +=
+//         `
+//         <div class="match">
+//             <div class="wrapper">
+//                 <button class="lws-delete">
+//                     <img src="./image/delete.svg" alt="" />
+//                 </button>
+//                 <h3 class="lws-matchName">Match ${state.counter + 1}</h3>
+//             </div>
+//             <div class="inc-dec">
+//                 <div class="incrementForm">
+//                     <h4>Increment</h4>
+//                     <input
+//                         type="number"
+//                         name="increment"
+//                         class="lws-increment"
+//                         onkeydown="add(this)"
+//                     />
+//                 </div>
+//                 <div class="decrementForm">
+//                     <h4>Decrement</h4>
+//                     <input
+//                         type="number"
+//                         name="decrement"
+//                         class="lws-decrement"
+//                         onkeydown="remove(this)"
+//                     />
+//                 </div>
+//             </div>
+//             <div class="numbers">
+//                 <h2 class="lws-singleResult">00</h2>
+//             </div>
+//         </div>
+//     `
 
-    // store.dispatch({
-    //     type: "addMatch",
-    // });
-
-    // console.log(first)
-
-    allMatchEl.innerHTML +=
-        `
-        <div class="match">
-            <div class="wrapper">
-                <button class="lws-delete">
-                    <img src="./image/delete.svg" alt="" />
-                </button>
-                <h3 class="lws-matchName">Match ${state.counter + 1}</h3>
-            </div>
-            <div class="inc-dec">
-                <div class="incrementForm">
-                    <h4>Increment</h4>
-                    <input
-                        type="number"
-                        name="increment"
-                        class="lws-increment"
-                        onkeydown="add(this)"
-                    />
-                </div>
-                <div class="decrementForm">
-                    <h4>Decrement</h4>
-                    <input
-                        type="number"
-                        name="decrement"
-                        class="lws-decrement"
-                        onkeydown="remove(this)"
-                    />
-                </div>
-            </div>
-            <div class="numbers">
-                <h2 class="lws-singleResult">00</h2>
-            </div>
-        </div>
-    `
-
-    store.dispatch({
-        type: "addMatch",
-    });
-}
+//     store.dispatch({
+//         type: "addMatch",
+//     });
+// }
